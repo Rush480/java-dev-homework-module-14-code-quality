@@ -44,8 +44,8 @@ public class Game {
 
 
             if (!isGameOver) {
-                playerMove(PLAYER_X);
-                computerMove(PLAYER_O);
+                playerMove();
+                computerMove();
             }
         }
     }
@@ -103,14 +103,13 @@ public class Game {
     }
 
 
-    private void playerMove(char player) {
-
+    private void playerMove() {
         while (true) {
             try {
                 displayMessage("Enter box number to select.", false);
                 int input = scanner.nextInt();
                 if (isValidMove(input)) {
-                    board[input - 1] = player;
+                    board[input - 1] = PLAYER_X;
                     break;
                 } else {
                     displayMessage("Invalid input. Enter again.", false);
@@ -126,12 +125,11 @@ public class Game {
         return move > 0 && move <= BOARD_SIZE && board[move - 1] == EMPTY_CELL;
     }
 
-    private void computerMove(char player) {
-
+    private void computerMove() {
         while (true) {
             int randomMove = random.nextInt(BOARD_SIZE);
             if (isValidMove(randomMove)) {
-                board[randomMove - 1] = player;
+                board[randomMove - 1] = PLAYER_O;
                 break;
             }
         }
